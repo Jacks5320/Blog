@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head th:replace="admin/_fragments :: head(~{::title})">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>标签管理</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/semantic-ui/2.2.4/semantic.min.css">
+    <link rel="stylesheet" href="../../static/css/me.css">
+</head>
+
+<body>
+    <!-- 导航 -->
+    <nav th:replace="admin/_fragments :: menu(4)"></nav>
+
+    <br>
+    <br>
+
+    <!-- 中间内容 -->
+    <div class="m-container m-padded-tb-large animate__animated animate__fadeIn">
+        <div class="ui container ">
+            <!--操作提示-->
+            <div class="ui success message" th:unless="${#strings.isEmpty(message)}">
+                <i class="close icon"></i>
+                <div class="header">提示：</div>
+                <p th:text="${message}">操作成功</p>
+            </div>
+            <!-- 表格 -->
+            <table class="ui table">
+                <!-- 标题 -->
+                <thead>
+                <tr>
+                    <th></th>
+                    <th>名称</th>
+                    <th class="right center aligned">操作</th>
+                </tr>
+                </thead>
+                <!--标签列表-->
+                <tbody>
+                <tr th:each="tag,iterStat : ${page.content}">
+                    <td th:text="${iterStat.count}">1</td>
+                    <td th:text="${tag.name}">财富自由</td>
+                    <td class="right center aligned">
+                        <a href="#" th:href="@{/admin/tags/{id}/input(id=${tag.id})}"
+                           class="ui mini basic teal button">编辑</a>
+                        <a href="#" th:href="@{/admin/tags/{id}/delete(id=${tag.id})}"
+                           class="ui mini basic red button">删除</a>
+                    </td>
+                </tr>
+                </tbody>
+                <!--翻页-->
+                <tfoot>
+                <tr>
+                    <th colspan="6">
+                        <div class="ui mini pagination menu" th:if="${page.totalPages}>1">
+                            <a href="#" th:href="@{/admin/tags(page=${page.number}-1)}" class="item"
+                               th:unless="${page.first}">上一页</a>
+                            <a href="#" th:href="@{/admin/tags(page=${page.number}+1)}" class="item"
+                               th:unless="${page.last}">下一页</a>
+                        </div>
+                        <a href="#" th:href="@{/admin/tags/input}"
+                           class="ui mini right floated  teal basic button">新增</a>
+                    </th>
+                </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+
+    <br>
+    <br>
+
+    <!-- 底部 -->
+    <footer th:replace="admin/_fragments :: footer"/>
+
+
+    <!--/*/<th:block th:replace="_fragments :: script">/*/-->
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
+    <!--/*/</th:block>/*/-->
+
+    <script>
+        $(".menu.toggle ").click(function () {
+            $(".m-item ").toggleClass('m-mobile-hide');
+        });
+        $('.ui.dropdown').dropdown({
+            on: 'hover'
+        });
+        //关闭提示框
+        $('.message .close').on('click', function () {
+            $(this).closest('.message').fadeOut();
+        });
+    </script>
+
+</body>
+
+</html>

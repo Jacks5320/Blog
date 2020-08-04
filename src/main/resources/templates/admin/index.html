@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head th:replace="admin/_fragments :: head(~{::title})">
+    <title>博客管理</title>
+</head>
+
+<body>
+    <!-- 导航 -->
+    <nav th:replace="admin/_fragments :: menu(0)"></nav>
+
+
+    <!-- 中间内容 -->
+    <div class="m-container m-padded-tb-large animate__animated animate__fadeIn">
+        <div class="ui container ">
+            <div class="ui success large message">
+                <h3>hi,</h3>
+                <p>Jacks,欢迎登录</p>
+            </div>
+
+            <img src="../../static/image/1.jpg" alt="" class="ui rounded bordered fluid image" th:src="@{/image/1.jpg}">
+        </div>
+    </div>
+
+
+    <!-- 底部 -->
+    <footer th:replace="admin/_fragments :: footer"></footer>
+
+
+    <!--/*/<th:block th:replace="admin/_fragments :: script">/*/-->
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
+    <!--/*/</th:block>/*/-->
+
+    <script>
+        $(".menu.toggle ").click(function () {
+            $(".m-item ").toggleClass('m-mobile-hide');
+        });
+        $('.ui.dropdown').dropdown({
+            on: 'hover'
+        });
+    </script>
+
+</body>
+
+</html>

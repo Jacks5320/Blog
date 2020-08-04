@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head th:replace="_fragments :: head(~{::title})">
+    <title>关于我</title>
+</head>
+
+<body>
+    <!-- 导航 -->
+    <nav th:replace="_fragments :: menu(5)" class="ui inverted attached segment m-padded-tb-mini m-shadow-small"></nav>
+
+    <!-- 中间内容 -->
+    <div class="m-container-large m-padded-tb-large ">
+        <div class="ui container">
+            <div class="ui stackable grid">
+                <!-- 左侧图片 -->
+                <div class="eleven wide column">
+                    <img src="../static/image/1.jpg" th:src="@{/image/1.jpg}" alt="" class="ui rounded image">
+                </div>
+                <!-- 右侧信息 -->
+                <div class="five wide column">
+                    <div class="ui top attached segment">
+                        <div class="ui header">关于我</div>
+                    </div>
+                    <div class="ui attached segment">
+                        <p class="m-text" th:text="#{about.info}">Jacks,就读于SWUST将于2021年正式毕业，大学就快结束，所以想做点东西出来。</p>
+                    </div>
+                    <!-- 兴趣爱好 -->
+                    <div class="ui attached segment">
+                        <div class="ui orange basic label m-margin-tb">编程</div>
+                        <div class="ui orange basic label m-margin-tb">写作</div>
+                        <div class="ui orange basic label m-margin-tb">思考</div>
+                        <div class="ui orange basic label m-margin-tb">运动</div>
+                    </div>
+                    <!-- 技术栈 -->
+                    <div class="ui attached segment">
+                        <div class="ui teal basic label m-margin-tb">Java</div>
+                        <div class="ui teal basic label m-margin-tb">SpringBoot</div>
+                        <div class="ui teal basic label m-margin-tb">MySQL</div>
+                        <div class="ui teal basic label m-margin-tb">Redis</div>
+                        <div class="ui teal basic label m-margin-tb">...</div>
+                    </div>
+                    <!-- 第三方 -->
+                    <div class="ui center aligned bottom attached segment">
+                        <a href="#" class="ui basic circular icon button"><i class="github icon"></i></a>
+                        <a href="#" class="ui basic circular icon button"><i class="weixin icon"></i></a>
+                        <a href="#" class="ui qqBtn basic circular icon button"><i class="qq icon"></i></a>
+                        <div class="ui qq_QR flowing popup transition hidden">
+                            <div class="image">
+                                <img th:src="@{/image/QQ.png}" src="../static/image/QQ.png" alt="" class="ui rounded bordered image"
+                                     style="width: 120px;">
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- 底部 -->
+    <footer th:replace="_fragments :: footer" class="ui inverted vertical segment m-padded-tb-massive "></footer>
+
+    <!--/*/<th:block th:replace="_fragments :: script">/*/-->
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
+    <!--/*/</th:block>/*/-->
+
+    <script>
+        $(".menu.toggle ").click(function () {
+            $(".m-item ").toggleClass('m-mobile-hide');
+        });
+
+        $('.qqBtn').popup({
+            popup: $('.qq_Qr'),
+            position: 'bottom center'
+        });
+    </script>
+
+</body>
+
+</html>

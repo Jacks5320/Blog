@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head th:replace="admin/_fragments :: head(~{::title})">
+    <title>标签新增</title>
+</head>
+
+<body>
+    <!-- 导航 -->
+    <nav th:replace="admin/_fragments :: menu(4)"
+         class="ui inverted attached segment m-padded-tb-mini m-shadow-small"></nav>
+    <br>
+    <br>
+    <!-- 中间内容 -->
+    <div class="m-container m-padded-tb-large ">
+        <div class="ui container ">
+            <form method="POST" th:action="*{id}==null ? @{/admin/tags} : @{/admin/tags/{id}(id=*{id})}"
+                  class="ui form" th:object="${tag}">
+                <input type="hidden" name="id" th:value="*{id}">
+                <div class="required field">
+                    <div class="ui left labeled input">
+                        <label class="ui teal basic label">名称</label>
+                        <input type="text" name="name" placeholder="输入标签名称" th:value="*{name}">
+                    </div>
+                </div>
+
+
+                <!--操作按钮  -->
+                <div class="ui center aligned container">
+                    <button class="ui submit teal button">提交</button>
+                    <a type="button" class="ui blue button" th:href="@{/admin/tags}">返回</a>
+                </div>
+
+                <div class="ui error message"></div>
+
+                <div class="ui negative message" th:if="${#fields.hasErrors('name')}">
+                    <i class="close icon"></i>
+                    <div class="header">操作失败</div>
+                    <p th:errors="*{name}">提交信息不符合</p>
+                </div>
+            </form>
+
+
+        </div>
+    </div>
+
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+
+    <!-- 底部 -->
+    <footer th:replace="admin/_fragments :: footer"/>
+
+
+    <!--/*/<th:block th:replace="_fragments :: script">/*/-->
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
+    <!--/*/</th:block>/*/-->
+    <script>
+        $(".menu.toggle ").click(function () {
+            $(".m-item ").toggleClass('m-mobile-hide');
+        });
+        // 注销下拉
+        $('.ui.dropdown').dropdown({
+            on: 'hover'
+        });
+        // 表单非空验证
+        // $('.ui.form').form({
+        //     fields: {
+        //         title: {
+        //             identifier: 'name',
+        //             rules: [{
+        //                 type: "empty",
+        //                 prompt: '请输入分类名称'
+        //             }]
+        //         }
+        //     }
+        // });
+        //关闭提示框
+        $('.message .close').on('click', function () {
+            $(this).closest('.message').fadeOut();
+        });
+    </script>
+
+</body>
+
+</html>

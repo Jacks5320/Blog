@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:fragment="head(title)">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:replace="${title}">博客</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/semantic-ui/2.2.4/semantic.min.css">
+    <!-- 引入排版插件 -->
+    <link rel="stylesheet" href="../static/css/typo.css" th:href="@{/css/typo.css}">
+    <!-- 自定义css -->
+    <link rel="stylesheet" href="../static/css/me.css" th:href="@{/css/me.css}">
+    <!-- 动画效果 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css">
+</head>
+<body>
+    <!-- 导航 -->
+    <nav th:fragment="menu(n)" class="ui inverted attached segment m-padded-tb-mini m-shadow-small">
+        <div class="ui container">
+            <div class="ui inverted secondary stackable menu">
+                <h2 class="ui teal header item">Blog</h2>
+                <a href="#" th:href="@{/}" class="m-item item m-mobile-hide" th:classappend="${n==1} ? 'active'"><i
+                        class="home icon"></i><span th:text="#{nav.index}">首页</span></a>
+                <a href="#" th:href="@{/types/-1}" class="m-item item m-mobile-hide"
+                   th:classappend="${n==2} ? 'active'"><i
+                        class="idea icon"></i>分类</a>
+                <a href="#" th:href="@{/tags/-1}" class="m-item item m-mobile-hide" th:classappend="${n==3} ? 'active'"><i
+                        class="tags icon"></i>标签</a>
+                <a href="#" th:href="@{/archives}" class="m-item item m-mobile-hide"
+                   th:classappend="${n==4} ? 'active'"><i
+                        class="clone icon"></i>归档</a>
+                <a href="#" th:href="@{/about}" class="m-item item m-mobile-hide" th:classappend="${n==5} ? 'active'"><i
+                        class="info icon"></i>关于我</a>
+                <div class="right m-item item m-mobile-hide">
+                    <form name="search" action="#" th:action="@{/search}" method="post" target="_blank">
+                        <div class="ui icon inverted input">
+                            <input type="text" name="query" placeholder="搜索..." th:value="${query}">
+                            <i onclick="document.forms['search'].submit()" class="search link icon"></i>
+                        </div>
+                    </form>
+                </div>
+                <div class="right m-item item m-mobile-hide" th:if="${n==1}">
+                    <a class="" th:href="@{/admin/blogs}"><i class="alarm outline icon"></i>后台管理</a>
+                </div>
+            </div>
+        </div>
+        <a href="#" class="ui menu toggle black icon button m-top-right m-mobile-show">
+            <i class=" sidebar icon "></i>
+        </a>
+    </nav>
+
+    <!--底部-->
+    <footer th:fragment="footer" class="ui inverted vertical segment m-padded-tb-massive ">
+        <div class="ui center aligned container ">
+            <div class="ui divided inverted stackable grid ">
+                <div class="five wide column ">
+                    <div class="ui inverted link list ">
+                        <div class="item ">
+                            <img src="../static/image/QQ.png " class="ui rounded image " alt=" "
+                                 style="width: 110px " th:src="@{/image/QQ.png}">
+                        </div>
+                    </div>
+                    <p>扫码加我QQ</p>
+                </div>
+                <div class="five wide column ">
+                    <h4 class="ui inverted header ">联系我</h4>
+                    <div class="ui left aligned inverted link list ">
+                        <p class="item ">QQ：761725455</p>
+                        <p class="item " th:text="#{index.email}">邮箱：761725455@qq.com</p>
+                    </div>
+                </div>
+                <div class="six wide column ">
+                    <h4 class="ui inverted header ">关于博客</h4>
+                    <p class="m-text-thin m-text-spaced m-opacity-mini ">这是我的个人博客！</p>
+                </div>
+            </div>
+            <div class="ui inverted section divider "></div>
+            <p class="m-text-thin m-text-spaced m-opacity-mini " th:text="#{footer.copyright}">Copyright © 2020-2021
+                Jacks Designed by Jacks</p>
+        </div>
+
+    </footer>
+
+    <th:block th:fragment="script">
+        <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdn.bootcdn.net/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
+    </th:block>
+
+</body>
+</html>
